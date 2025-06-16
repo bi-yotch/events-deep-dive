@@ -4,6 +4,14 @@ on:
     types:
       - opened
   workflow_dispatch:
+  push:
+    branches:
+      - master
+      - 'dev-*' # Starting with dev-
+      - 'feat/**' # Wildcard after /
+    paths-ignore:
+      - '.github/workflows/*'
+      # Will not run the workflow if ONLY the files inside workflow are changed during push.
 jobs:
   deploy:
     runs-on: ubuntu-latest
